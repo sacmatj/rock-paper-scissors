@@ -1,0 +1,19 @@
+#gameArea {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 30px;
+}
+
+h1 {
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    padding: 30px;
+}

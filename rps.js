@@ -61,18 +61,32 @@ function playRound(humanChoice, computerChoice){
 
 function playGame() {
 
-    for (let i = 0; i < 5; i++){
-        playRound(getHumanChoice(), getComputerChoice());
-        console.log(`Current Score \nHuman: ${humanScore} Computer: ${computerScore}`);
-    }
+    const rpsButtons = document.querySelectorAll("button");
+    let isGameover = false;
+    const title = document.querySelector("h1");
 
-    if (humanScore > computerScore){
-        console.log("Human Wins!")
-    } else if (humanScore < computerScore){
-        console.log("Computer Wins!")
-    } else {
-        console.log("It's a draw!")
-    }
+    rpsButtons.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            if (!isGameover){
+                const humanChoiceInput = btn.innerText.toLowerCase();
+                playRound(humanChoiceInput, getComputerChoice());
+                const playerScoreDisplay = document.querySelector("#playerScore");
+                const computerScoreDisplay = document.querySelector("#computerScore");
+    
+                playerScoreDisplay.innerText = humanScore;
+                computerScoreDisplay.innerText = computerScore;
+
+                if (humanScore === 5){
+                    title.innerText = "Player Wins!"
+                    isGameover = true;
+                } else if (computerScore === 5) {
+                    title.innerText = "Computer Wins!"
+                    isGameover = true;
+                }
+            }
+        })
+    })
+
 }
 
 playGame();
